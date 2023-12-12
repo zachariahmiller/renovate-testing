@@ -28,16 +28,16 @@
   "packageRules": [
     {
       "matchManagers": ["regex", "helm-values", "kubernetes"],
-      "paths": ["src/istio/*"],
-      "groupName": "dependencies - istio",
+      "paths": ["src/{{groupSlug}}/**"],
+      "groupName": "dependencies - {{groupSlug}}",
       "groupSlug": "istio",
       "commitMessageTopic": "{{groupSlug}}",
       "additionalBranchPrefix": "package-{{groupSlug}}-deps"
     },
     {
       "matchManagers": ["regex", "helm-values", "kubernetes"],
-      "paths": ["src/promtail/**"],
-      "groupName": "dependencies - promtail",
+      "paths": ["src/{{groupSlug}}/**"],
+      "groupName": "dependencies - {{groupSlug}}",
       "groupSlug": "promtail",
       "commitMessageTopic": "{{groupSlug}}",
       "additionalBranchPrefix": "package-{{groupSlug}}-deps"
@@ -54,7 +54,7 @@
       "additionalBranchPrefix": "{{groupSlug}}-deps",
       "prTitle": "Update {{groupSlug}} dependencies",
       "pinDigests": true,
-      "matchDatasources": ["github-tags"]    
+      "matchDatasources": ["github-tags", "github-actions"]    
     }
   ]
 }
