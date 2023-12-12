@@ -50,8 +50,9 @@
         "action"
       ],
       "groupName": "dependencies - {{groupSlug}}",
-      "groupSlug": "{{github-actions}}",
-      "additionalBranchPrefix": "package-{{groupSlug}}-deps",
+      "groupSlug": "github-actions",
+      "additionalBranchPrefix": "{{groupSlug}}-deps",
+      "prTitle": "Update {{groupSlug}} dependencies",
       "pinDigests": true,
       "matchDatasources": ["github-tags"]    
     }
