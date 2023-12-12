@@ -45,14 +45,14 @@
     { 
       "paths": [".github/**"],
       "matchManagers": ["github-actions", "regex"],
-      "commitMessageTopic": "{{groupSlug}}",
+      "commitMessageTopic": "update {{groupSlug}}",
       "matchDepTypes": [
         "action"
       ],
       "groupName": "dependencies - {{groupSlug}}",
       "groupSlug": "github-actions",
       "additionalBranchPrefix": "{{groupSlug}}-deps",
-      "commitMessage": "Update {{groupSlug}} dependencies",
+
       "pinDigests": true,
       "matchDatasources": ["github-tags", "github-actions"]    
     }
