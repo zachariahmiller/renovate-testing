@@ -52,7 +52,7 @@
       "groupName": "dependencies - {{groupSlug}}",
       "groupSlug": "github-actions",
       "additionalBranchPrefix": "{{groupSlug}}-deps",
-      "prTitle": "Update {{groupSlug}} dependencies",
+      "commitMessage": "Update {{groupSlug}} dependencies",
       "pinDigests": true,
       "matchDatasources": ["github-tags", "github-actions"]    
     }
