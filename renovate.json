@@ -90,20 +90,22 @@
   ],
   "packageRules": [
     {
-      "matchManagers": ["regex", "helm-values", "kubernetes", "helm"],
+      "matchManagers": ["regex", "helm-values", "kubernetes"],
       "matchFileNames": ["src/{{groupSlug}}/**"],
       "groupName": "dependencies - {{groupSlug}}",
       "groupSlug": "istio",
       "commitMessageTopic": "{{groupSlug}}",
-      "additionalBranchPrefix": "package-{{groupSlug}}-deps"
+      "additionalBranchPrefix": "package-{{groupSlug}}-deps",
+      "matchDatasources": ["github-tags", "docker", "helm", "gitlab-tags"] 
     },
     {
-      "matchManagers": ["regex", "helm-values", "kubernetes", "helm"],
+      "matchManagers": ["regex", "helm-values", "kubernetes"],
       "matchFileNames": ["src/{{groupSlug}}/**"],
       "groupName": "dependencies - {{groupSlug}}",
       "groupSlug": "promtail",
       "commitMessageTopic": "{{groupSlug}}",
-      "additionalBranchPrefix": "package-{{groupSlug}}-deps"
+      "additionalBranchPrefix": "package-{{groupSlug}}-deps",
+      "matchDatasources": ["github-tags", "docker", "helm", "gitlab-tags"] 
     },
     { 
       "matchFileNames": [".github/**"],
@@ -119,6 +121,13 @@
 
       "pinDigests": true,
       "matchDatasources": ["github-tags", "github-actions"]    
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchFileNames": ["package.json", "package-lock.json"],
+      "groupName": "pepr",
+      "commitMessageTopic": "{{groupSlug}} dependency updates",
+      "additionalBranchPrefix": "package-{{groupSlug}}-deps"
     }
   ]
 }
