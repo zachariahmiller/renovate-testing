@@ -91,7 +91,7 @@
   "packageRules": [
     {
       "matchManagers": ["regex", "helm-values", "kubernetes"],
-      "paths": ["src/{{groupSlug}}/**"],
+      "matchFileNames": ["src/{{groupSlug}}/**"],
       "groupName": "dependencies - {{groupSlug}}",
       "groupSlug": "istio",
       "commitMessageTopic": "{{groupSlug}}",
@@ -99,14 +99,14 @@
     },
     {
       "matchManagers": ["regex", "helm-values", "kubernetes"],
-      "paths": ["src/{{groupSlug}}/**"],
+      "matchFileNames": ["src/{{groupSlug}}/**"],
       "groupName": "dependencies - {{groupSlug}}",
       "groupSlug": "promtail",
       "commitMessageTopic": "{{groupSlug}}",
       "additionalBranchPrefix": "package-{{groupSlug}}-deps"
     },
     { 
-      "paths": [".github/**"],
+      "matchFileNames": [".github/**"],
       "matchManagers": ["github-actions", "regex"],
       "commitMessageTopic": "update {{groupSlug}}",
       "matchDepTypes": [
