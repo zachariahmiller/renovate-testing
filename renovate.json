@@ -36,7 +36,10 @@
     },
     {
       "fileMatch": ["\\.*\\.ya?ml$"],
-      "matchStrings": ["- (?<depName>.*):(?<currentValue>v\\d+\\.\\d+\\.\\d+)"],
+      "matchStrings": [
+        "- (?<depName>.*):(?<currentValue>v\\d+\\.\\d+\\.\\d+)",
+        "- (?<depName>[\\w./-]+):(?<currentValue>\\d+\\.\\d+\\.\\d+)(-.+)?$"
+      ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "semver"
     },
