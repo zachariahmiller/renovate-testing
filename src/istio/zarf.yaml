@@ -76,14 +76,14 @@ components:
     charts:
       # renovate: datasource=helm
       - name: base
-        namespace: istio-system
         url: https://istio-release.storage.googleapis.com/charts
         version: 1.19.3
+        namespace: istio-system
       # renovate: datasource=helm
       - name: istiod
-        namespace: istio-system
         url: https://istio-release.storage.googleapis.com/charts
         version: 1.19.3
+        namespace: istio-system
         valuesFiles:
           - "values/cng-values.yaml"
     manifests:
@@ -102,10 +102,10 @@ components:
     charts:
       # renovate: datasource=helm
       - name: gateway
-        releaseName: admin-ingressgateway
-        namespace: istio-admin-gateway
         url: https://istio-release.storage.googleapis.com/charts
         version: 1.19.3
+        releaseName: admin-ingressgateway
+        namespace: istio-admin-gateway
       - name: uds-istio-config
         version: 0.2.0
         localPath: chart
@@ -119,10 +119,10 @@ components:
     charts:
       # renovate: datasource=helm
       - name: gateway
-        releaseName: tenant-ingressgateway
-        namespace: istio-tenant-gateway
         url: https://istio-release.storage.googleapis.com/charts
         version: 1.19.3
+        releaseName: tenant-ingressgateway
+        namespace: istio-tenant-gateway
       - name: uds-istio-config
         version: 0.2.0
         localPath: chart
@@ -136,10 +136,10 @@ components:
     charts:
       # renovate: datasource=helm
       - name: gateway
-        releaseName: passthrough-ingressgateway
-        namespace: istio-passthrough-gateway
         url: https://istio-release.storage.googleapis.com/charts
         version: 1.19.3
+        releaseName: passthrough-ingressgateway
+        namespace: istio-passthrough-gateway
       - name: uds-istio-config
         version: 0.2.0
         localPath: chart
