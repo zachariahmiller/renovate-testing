@@ -1,8 +1,26 @@
 {
+  "enabled": true,
+  "forkProcessing": "enabled",
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:base",
+    ":dependencyDashboard"
   ],
+  "rebaseStalePrs": true,
+  "dependencyDashboard": true,
+  "platform": "github",
+  "onboarding": false,
+  "requireConfig": "required",
+  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "rebaseWhen": "conflicted",
+  "commitBodyTable": true,
+  "suppressNotifications": ["prIgnoreNotification"],
+  "helm-values": {
+    "fileMatch": ["\\.*\\.ya?ml$"]
+  },
+  "kubernetes": {
+    "fileMatch": ["\\.*\\.ya?ml$"]
+  },
   "regexManagers":[
     {
       "fileMatch": ["\\.*\\.ya?ml$"],
@@ -12,6 +30,51 @@
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
       "datasourceTemplate": "github-tags"
+    },
+    {
+      "fileMatch": ["\\.*\\.ya?ml$"],
+      "matchStrings": ["- (?<depName>.*):(?<currentValue>v\\d+\\.\\d+\\.\\d+)"],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "semver"
+    },
+    {
+      "fileMatch": ["\\.*\\.ya?ml$"],
+      "matchStrings": ["url:\\s*oci://ghcr.io/defenseunicorns/packages/init:(?<currentValue>v\\d+\\.\\d+\\.\\d+)-skeleton"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "defenseunicorns/zarf",
+      "versioningTemplate": "semver"
+    },
+    {
+      "fileMatch": ["\\.*\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: datasource=docker( versioning=(?<versioning>.*?))?\n\\s*-\\s+(?<depName>[^:]+):(?<currentValue>.*)"
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "fileMatch": ["\\.*\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: image=(?<depName>.*?)\\s*image:\\s.*:(?<currentValue>.*)",
+        "# renovate: image=(?<depName>.*?)\\s*tag:\\s*(?<currentValue>.*)"
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "fileMatch": ["\\.*\\.ya?ml$"],
+      "matchStrings": [
+        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
+        "# renovate: datasource=helm\n .*- name: (?<depName>.*?)\n *url: (?<registryUrl>.*?)\n *version: (?<currentValue>.*)\n"
+      ],
+      "datasourceTemplate": "helm"
+    },
+    {
+      "fileMatch": ["\\.*\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: datasource=gitlab-tags depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s.*?_version:\\s*(?<currentValue>[.*])\\s",
+        "# renovate: datasource=gitlab-tags depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s.*?_version:\\s*['\"](?<currentValue>.*)['\"]\\s"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      "datasourceTemplate": "gitlab-tags"
     }
   ],
   "hostRules": [
