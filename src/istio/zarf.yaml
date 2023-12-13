@@ -16,10 +16,12 @@ components:
     only:
       flavor: upstream
     charts:
+      # renovate: datasource=helm
       - name: base
         namespace: istio-system
         url: https://istio-release.storage.googleapis.com/charts
         version: 1.19.3
+      # renovate: datasource=helm
       - name: istiod
         namespace: istio-system
         url: https://istio-release.storage.googleapis.com/charts
@@ -42,10 +44,12 @@ components:
     only:
       flavor: registry1
     charts:
+      # renovate: datasource=helm
       - name: base
         namespace: istio-system
         url: https://istio-release.storage.googleapis.com/charts
         version: 1.19.3
+      # renovate: datasource=helm
       - name: istiod
         namespace: istio-system
         url: https://istio-release.storage.googleapis.com/charts
@@ -70,10 +74,12 @@ components:
     only:
       flavor: cng
     charts:
+      # renovate: datasource=helm
       - name: base
         namespace: istio-system
         url: https://istio-release.storage.googleapis.com/charts
         version: 1.19.3
+      # renovate: datasource=helm
       - name: istiod
         namespace: istio-system
         url: https://istio-release.storage.googleapis.com/charts
@@ -94,6 +100,7 @@ components:
     description: "Deploy an admin gateway"
     required: true
     charts:
+      # renovate: datasource=helm
       - name: gateway
         releaseName: admin-ingressgateway
         namespace: istio-admin-gateway
@@ -110,6 +117,7 @@ components:
     description: "Deploy a tenant gateway"
     required: true
     charts:
+      # renovate: datasource=helm
       - name: gateway
         releaseName: tenant-ingressgateway
         namespace: istio-tenant-gateway
@@ -126,6 +134,7 @@ components:
     description: "Deploy a TLS passthrough gateway"
     required: true
     charts:
+      # renovate: datasource=helm
       - name: gateway
         releaseName: passthrough-ingressgateway
         namespace: istio-passthrough-gateway

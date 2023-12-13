@@ -11,6 +11,7 @@ components:
     only:
       flavor: upstream
     charts:
+      # renovate: datasource=helm
       - name: promtail
         url: https://grafana.github.io/helm-charts/
         version: 6.15.3
@@ -33,6 +34,7 @@ components:
     only:
       flavor: registry1
     charts:
+      # renovate: datasource=helm
       - name: promtail
         url: https://grafana.github.io/helm-charts/
         version: 6.15.3
@@ -54,6 +56,7 @@ components:
     only:
       flavor: cng
     charts:
+      # renovate: datasource=helm
       - name: promtail
         url: https://grafana.github.io/helm-charts/
         version: 6.15.3
