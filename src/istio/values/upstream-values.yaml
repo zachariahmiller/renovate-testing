@@ -1,4 +1,0 @@
-global:
-  variant: distroless
-meshConfig:
-  accessLogFile: /dev/stdout
