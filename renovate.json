@@ -11,22 +11,30 @@
   "branchConcurrentLimit": 0,
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
-  "rebaseStalePrs": true,
   "platform": "github",
   "requireConfig": "required",
   "rebaseWhen": "conflicted",
   "commitBodyTable": true,
   "separateMajorMinor": false,
-  "suppressNotifications": ["prIgnoreNotification"],
+  "suppressNotifications": [
+    "prIgnoreNotification"
+  ],
   "helm-values": {
-    "fileMatch": ["\\.*\\.ya?ml$"]
+    "managerFilePatterns": [
+      "/\\.*\\.ya?ml$/"
+    ]
   },
   "kubernetes": {
-    "fileMatch": ["\\.*\\.ya?ml$"]
+    "managerFilePatterns": [
+      "/\\.*\\.ya?ml$/"
+    ]
   },
-  "regexManagers":[
+  "customManagers": [
     {
-      "fileMatch": ["\\.*\\.ya?ml$"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.*\\.ya?ml$/"
+      ],
       "matchStrings": [
         "# renovate: datasource=github-tags depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?version:\\s*(?<currentValue>.*)\\s",
         "# renovate: datasource=github-tags depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?version:\\s*['\"](?<currentValue>.*)['\"]\\s"
@@ -34,23 +42,33 @@
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
       "datasourceTemplate": "github-tags"
     },
-
     {
-      "fileMatch": ["\\.*\\.ya?ml$"],
-      "matchStrings": ["url:\\s*oci://ghcr.io/defenseunicorns/packages/init:(?<currentValue>v\\d+\\.\\d+\\.\\d+)-skeleton"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.*\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "url:\\s*oci://ghcr.io/defenseunicorns/packages/init:(?<currentValue>v\\d+\\.\\d+\\.\\d+)-skeleton"
+      ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "defenseunicorns/zarf",
       "versioningTemplate": "semver"
     },
     {
-      "fileMatch": ["\\.*\\.ya?ml$"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.*\\.ya?ml$/"
+      ],
       "matchStrings": [
         "# renovate: datasource=docker( versioning=(?<versioning>.*?))?\n\\s*-\\s+(?<depName>[^:]+):(?<currentValue>.*)"
       ],
       "datasourceTemplate": "docker"
     },
     {
-      "fileMatch": ["\\.*\\.ya?ml$"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.*\\.ya?ml$/"
+      ],
       "matchStrings": [
         "# renovate: image=(?<depName>.*?)\\s*image:\\s.*:(?<currentValue>.*)",
         "# renovate: image=(?<depName>.*?)\\s*tag:\\s*(?<currentValue>.*)"
@@ -58,27 +76,33 @@
       "datasourceTemplate": "docker"
     },
     {
-      "fileMatch": ["\\.*\\.ya?ml$"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.*\\.ya?ml$/"
+      ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
         "# renovate: datasource=helm\n\\s.*- name: (?<depName>.*?)\n *url: (?<registryUrl>.*?)\n *version: (?<currentValue>.*)\n"
       ],
       "datasourceTemplate": "helm"
     },
-        {
-            "customType": "regex",
-            "fileMatch": [
-                "(^|/)zarf\\.yaml$"
-            ],
-            "matchStrings": [
-                "- ['\"]?(?<depName>[^\"'\\s]+):(?<currentValue>[^\"'\\s]+)['\"]?( # renovate:( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?)?(\\s|$)"
-            ],
-            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
-            "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}",
-            "datasourceTemplate": "docker"
-        },
     {
-      "fileMatch": ["\\.*\\.ya?ml$"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)zarf\\.yaml$/"
+      ],
+      "matchStrings": [
+        "- ['\"]?(?<depName>[^\"'\\s]+):(?<currentValue>[^\"'\\s]+)['\"]?( # renovate:( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?)?(\\s|$)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
+      "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.*\\.ya?ml$/"
+      ],
       "matchStrings": [
         "# renovate: datasource=gitlab-tags depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s.*?_version:\\s*(?<currentValue>[.*])\\s",
         "# renovate: datasource=gitlab-tags depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s.*?_version:\\s*['\"](?<currentValue>.*)['\"]\\s"
@@ -89,29 +113,42 @@
   ],
   "packageRules": [
     {
-      "matchFileNames": ["src/istio/**"],
+      "matchFileNames": [
+        "src/istio/**"
+      ],
       "groupName": "istio",
       "commitMessageTopic": "istio"
     },
     {
-      "matchFileNames": ["src/promtail/**"],
+      "matchFileNames": [
+        "src/promtail/**"
+      ],
       "groupName": "promtail",
       "commitMessageTopic": "promtail"
     },
     {
-      "matchPackageNames": ["defenseunicorns/zarf"],
+      "matchPackageNames": [
+        "defenseunicorns/zarf"
+      ],
       "groupName": "zarf",
       "commitMessageTopic": "zarf"
     },
-    { 
-      "matchFileNames": [".github/**"],
-      "matchPackagePatterns": ["!defenseunicorns/zarf"],
+    {
+      "matchFileNames": [
+        ".github/**"
+      ],
       "groupName": "githubactions",
       "commitMessageTopic": "githubactions",
-      "pinDigests": true
+      "pinDigests": true,
+      "matchPackageNames": [
+        "/!defenseunicorns/zarf/"
+      ]
     },
     {
-      "matchFileNames": ["package.json", "package-lock.json"],
+      "matchFileNames": [
+        "package.json",
+        "package-lock.json"
+      ],
       "groupName": "pepr",
       "commitMessageTopic": "pepr"
     }
