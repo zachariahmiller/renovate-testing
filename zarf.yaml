@@ -1,0 +1,30 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: gitlab-runner
+  description: "GitLab Runner is a powerful, open-source automation tool that executes jobs in your CI/CD pipelines. It works seamlessly with GitLab, allowing you to build, test, and deploy your code efficiently. GitLab Runner supports multiple programming languages, can run on various operating systems, and offers flexible deployment options including Docker containers and Kubernetes clusters. With its scalable architecture and robust feature set, GitLab Runner helps development teams streamline their workflows and deliver high-quality software faster."
+  version: "dev"
+
+components:
+
+
+  - name: gitlab-runner
+    required: true
+    description: "Deploy gitlab-runner"
+    import:
+      path: common
+    only:
+      flavor: upstream
+    charts:
+      - name: gitlab-runner
+        valuesFiles:
+          - values/upstream-values.yaml
+    images:
+      - "registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v17.7.0" # renovate: versioning=regex:^(?<=:alpine-v)(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
+      - "registry.gitlab.com/gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-helper-ocp:v18.0.1"
+      - "library/alpine:3.22.0"
+
+
