@@ -14,7 +14,7 @@ components:
       # renovate: datasource=helm
       - name: promtail
         url: https://grafana.github.io/helm-charts/
-        version: 6.15.3
+        version: 6.17.0
         namespace: promtail
         gitPath: charts/promtail
         valuesFiles:
@@ -24,8 +24,8 @@ components:
         version: 0.1.0
         localPath: chart
     images:
-      - docker.io/jimmidyson/configmap-reload:v0.8.0
-      - docker.io/grafana/promtail:2.9.2
+      - docker.io/jimmidyson/configmap-reload:v0.9.0
+      - docker.io/grafana/promtail:3.5.1
 
 
   - name: promtail
@@ -37,7 +37,7 @@ components:
       # renovate: datasource=helm
       - name: promtail
         url: https://grafana.github.io/helm-charts/
-        version: 6.15.3
+        version: 6.17.0
         namespace: promtail
         gitPath: charts/promtail
         valuesFiles:
@@ -59,7 +59,7 @@ components:
       # renovate: datasource=helm
       - name: promtail
         url: https://grafana.github.io/helm-charts/
-        version: 6.15.3
+        version: 6.17.0
         namespace: promtail
         gitPath: charts/promtail
         valuesFiles:
