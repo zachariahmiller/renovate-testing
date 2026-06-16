@@ -12,7 +12,7 @@ runners:
     registry: "###ZARF_REGISTRY###"
     repository: library/alpine
     # renovate: datasource=docker depName=library/alpine versioning=semver
-    tag: "3.22.0"
+    tag: "3.24.1"
   helper:
     registry: "###ZARF_REGISTRY###"
     repository: gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-helper-ocp
